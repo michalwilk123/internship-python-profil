@@ -2,7 +2,7 @@ from datetime import datetime
 from dataclasses import dataclass
 from enum import Enum
 
-Level = Enum("Level", "INFO WARNING DEBUG CRITICAL ERROR")
+Level = Enum("Level", "DEBUG INFO WARNING ERROR CRITICAL")
 
 
 @dataclass
