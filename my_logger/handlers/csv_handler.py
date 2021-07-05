@@ -1,3 +1,4 @@
+import csv
 from .base_handler import Handler
 from ..log_entry import LogEntry
 
@@ -9,5 +10,5 @@ class CSVHandler(Handler):
     def add_log(self, log: LogEntry) -> bool:
         raise NotImplementedError
 
-    def get_dict(self) -> dict:
+    def get_base_form(self) -> dict:
         raise NotImplementedError
