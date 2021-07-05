@@ -44,5 +44,6 @@ class ProfilLogger:
             self.__level = Level[level]
         except KeyError:
             raise KeyError(
-                f"Log level {level} does not exist. Available levels: {[a.name for a in Level]}"
+                f"Log level {level} does not exist. "
+                "Available levels: {[a.name for a in Level]}"
             )
