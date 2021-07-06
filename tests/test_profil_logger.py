@@ -1,4 +1,4 @@
-from my_logger.profil_logger import ProfilLogger
+from my_logger import ProfilLogger
 import unittest
 
 
