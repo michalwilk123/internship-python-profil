@@ -133,19 +133,30 @@ class TestProfilLoggerReader(unittest.TestCase):
                 LogEntry(
                     date=datetime(2021, 3, 6, 12, 20, 15, 56783),
                     level="INFO",
-                    msg="I’d just like to interject for a moment. important msage no.2",
+                    msg=(
+                        "I’d just like to interject for a moment. "
+                        "important msage no.2"
+                    ),
                 ),
                 LogEntry(
                     date=datetime(2021, 4, 6, 12, 20, 15, 57006),
                     level="INFO",
-                    msg="What you’re refering to as Linux, is in fact, GNU/Linux, or as I’ve recently taken to calling it, GNU plus Linux.",
+                    msg=(
+                        "What you’re refering to as Linux, is in fact, "
+                        "GNU/Linux, or as I’ve recently taken to calling "
+                        "it, GNU plus Linux."
+                    ),
                 ),
             ],
             "DEBUG": [
                 LogEntry(
                     date=datetime(2021, 5, 6, 12, 20, 15, 57006),
                     level="DEBUG",
-                    msg="Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU ",
+                    msg=(
+                        "Linux is not an operating system unto itself,"
+                        " but rather another free component of a fully "
+                        "functioning GNU "
+                    ),
                 )
             ],
             "CRITICAL": [
@@ -177,21 +188,32 @@ class TestProfilLoggerReader(unittest.TestCase):
                 LogEntry(
                     date=datetime(2021, 3, 6, 12, 20, 15, 56783),
                     level="INFO",
-                    msg="I’d just like to interject for a moment. important msage no.2",
+                    msg=(
+                        "I’d just like to interject for a moment."
+                        " important msage no.2"
+                    ),
                 )
             ],
             "April": [
                 LogEntry(
                     date=datetime(2021, 4, 6, 12, 20, 15, 57006),
                     level="INFO",
-                    msg="What you’re refering to as Linux, is in fact, GNU/Linux, or as I’ve recently taken to calling it, GNU plus Linux.",
+                    msg=(
+                        "What you’re refering to as Linux, is in "
+                        "fact, GNU/Linux, or as I’ve recently taken"
+                        " to calling it, GNU plus Linux."
+                    ),
                 )
             ],
             "May": [
                 LogEntry(
                     date=datetime(2021, 5, 6, 12, 20, 15, 57006),
                     level="DEBUG",
-                    msg="Linux is not an operating system unto itself, but rather another free component of a fully functioning GNU ",
+                    msg=(
+                        "Linux is not an operating system unto itself, "
+                        "but rather another free component of a "
+                        "fully functioning GNU "
+                    ),
                 )
             ],
             "June": [

@@ -64,7 +64,9 @@ class ProfilLoggerReader:
         )
         log_dict = {}
 
-        for key, group in itertools.groupby(log_entry_list, key=lambda le:le.level):
+        for key, group in itertools.groupby(
+            log_entry_list, key=lambda le: le.level
+        ):
             log_dict[key] = list(group)
 
         return log_dict
@@ -80,7 +82,9 @@ class ProfilLoggerReader:
         )
         log_dict = {}
 
-        for key, group in itertools.groupby(log_entry_list, key=lambda le:le.date.strftime("%B")):
+        for key, group in itertools.groupby(
+            log_entry_list, key=lambda le: le.date.strftime("%B")
+        ):
             log_dict[key] = list(group)
 
         return log_dict

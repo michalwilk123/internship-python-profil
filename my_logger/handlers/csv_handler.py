@@ -49,7 +49,8 @@ class CSVHandler(Handler):
                 if None in row.values():
                     raise InvalidCSVFileException(
                         f"Given csv file ({self.__filename}) is invalid! "
-                        f"Line {idx+1}: {row} does not contain all nessesary fields!"
+                        f"Line {idx+1}: {row} does not "
+                        "contain all nessesary fields!"
                     )
 
                 log_entries.append(

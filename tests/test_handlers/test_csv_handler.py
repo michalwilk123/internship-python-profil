@@ -16,9 +16,9 @@ date,level,msg
 
 # bad csv file
 INVALID_CSV_0 = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Donec condimentum vulputate blandit. Pellentesque consequat 
-orci quis neque malesuada, at tristique ex bibendum. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Donec condimentum vulputate blandit. Pellentesque consequat
+orci quis neque malesuada, at tristique ex bibendum.
 Quisque non eros luctus, ultricies nisi vel, venenatis ipsum.
 """
 
@@ -107,7 +107,8 @@ class TestCSVHandler(unittest.TestCase):
             m.assert_called_once_with(CSV_FILENAME, "r")
 
     def test_handler_bad_time_format(self):
-        """Unit test: test if ValueError raised for invalid time format (not ISO)"""
+        """Unit test: test if ValueError raised for invalid time
+        format (not ISO)"""
         m = mock.mock_open(read_data=INVALID_CSV_2)
         handler = CSVHandler(CSV_FILENAME)
 
