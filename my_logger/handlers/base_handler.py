@@ -8,7 +8,7 @@ class Handler(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def add_log(self, log: LogEntry):
+    def add_log(self, log: LogEntry) -> None:
         raise NotImplementedError
 
     @abstractmethod
