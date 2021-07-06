@@ -14,7 +14,7 @@ class TestProfilLogger(unittest.TestCase):
         self.assertTrue(self.profil_logger.critical("Test Log"))
 
     def test_min_log_change(self):
-        self.profil_logger.set_log_level('WARNING')
+        self.profil_logger.set_log_level("WARNING")
 
         self.assertFalse(self.profil_logger.debug("Test Log"))
         self.assertFalse(self.profil_logger.info("Test Log"))
@@ -24,10 +24,5 @@ class TestProfilLogger(unittest.TestCase):
 
     def test_bad_level_name(self):
         self.assertRaises(
-            KeyError, 
-            self.profil_logger.set_log_level,
-            "bad level name"
+            KeyError, self.profil_logger.set_log_level, "bad level name"
         )
-        
-        
-
