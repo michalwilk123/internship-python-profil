@@ -6,6 +6,11 @@ from dataclasses import asdict
 from datetime import datetime
 from typing import List
 
+class InvalidCSVFileException(Exception):
+    ...
+
+class InvalidCSVHeaderException(Exception):
+    ...
 
 class CSVHandler(Handler):
     def __init__(self, filename: str) -> None:
@@ -17,8 +22,6 @@ class CSVHandler(Handler):
             log_writer = csv.DictWriter(csv_file, fieldnames=LogEntry.get_field_names())
 
             # looking for header
-            # if not csv.Sniffer().has_header(csv_file.read()):
-            #     log_writer.writeheader()
             if not os.stat(self.__filename).st_size:
                 log_writer.writeheader()
             
@@ -28,14 +31,22 @@ class CSVHandler(Handler):
                 
     def get_base_form(self) -> List[LogEntry]:
         with open(self.__filename, 'r') as csv_file:
-            # looking for header
-            log_writer = csv.DictReader(csv_file, fieldnames=LogEntry.get_field_names())
-            # generating datetime obj from datetime.now strign
+            log_reader = csv.DictReader(csv_file, fieldnames=LogEntry.get_field_names())
             log_entries = []
 
-            for row in log_writer:
+            # testing header
+            if None in next(log_reader).keys():
+                raise InvalidCSVHeaderException
+
+            for idx, row in enumerate(log_reader):
                 # this looks bad but and i do not know how to 
                 # make this part better
+                if None in row.values():
+                    raise InvalidCSVFileException(
+                        f"Given csv file ({self.__filename}) is invalid! "
+                        f"Line {idx+1}: {row} does not contain all nessesary fields!"
+                    )
+                    
                 log_entries.append(
                     LogEntry(
                         date = datetime.fromisoformat(row["date"]),
