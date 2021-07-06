@@ -3,6 +3,7 @@ from typing import Iterable, Optional, List, Dict
 from .handlers.base_handler import Handler
 from .log_entry import LogEntry
 import re
+import itertools
 
 
 class ProfilLoggerReader:
@@ -57,11 +58,29 @@ class ProfilLoggerReader:
         start_date: Optional[datetime] = None,
         end_date: Optional[datetime] = None,
     ) -> Dict[str, List[LogEntry]]:
-        ...
+        log_entry_list = self.__handler.get_base_form()
+        log_entry_list = ProfilLoggerReader.filter_by_datetime(
+            log_entry_list, start_date, end_date
+        )
+        log_dict = {}
+
+        for key, group in itertools.groupby(log_entry_list, key=lambda le:le.level):
+            log_dict[key] = list(group)
+
+        return log_dict
 
     def groupby_month(
         self,
         start_date: Optional[datetime] = None,
         end_date: Optional[datetime] = None,
     ) -> Dict[str, List[LogEntry]]:
-        ...
+        log_entry_list = self.__handler.get_base_form()
+        log_entry_list = ProfilLoggerReader.filter_by_datetime(
+            log_entry_list, start_date, end_date
+        )
+        log_dict = {}
+
+        for key, group in itertools.groupby(log_entry_list, key=lambda le:le.date.strftime("%B")):
+            log_dict[key] = list(group)
+
+        return log_dict
