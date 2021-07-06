@@ -72,7 +72,6 @@ class TestCSVHandler(unittest.TestCase):
         with mock.patch("builtins.open", m):
             base_form = handler.get_base_form()
             m.assert_called_once_with(CSV_FILENAME, "r")
-            print(f"{base_form=}")
             correct_form = [
                 LogEntry(
                     date=datetime(2021, 7, 6, 12, 20, 15, 56783),
