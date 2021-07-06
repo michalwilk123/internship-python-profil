@@ -55,7 +55,7 @@ class CSVHandler(Handler):
                 log_entries.append(
                     LogEntry(
                         date=datetime.fromisoformat(row["date"]),
-                        level=row["date"],
+                        level=row["level"],
                         msg=row["msg"],
                     )
                 )

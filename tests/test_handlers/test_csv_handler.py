@@ -1,4 +1,7 @@
-from my_logger.handlers.csv_handler import InvalidCSVFileException, InvalidCSVHeaderException
+from my_logger.handlers.csv_handler import (
+    InvalidCSVFileException,
+    InvalidCSVHeaderException,
+)
 from my_logger import ProfilLogger, CSVHandler, LogEntry
 from datetime import datetime
 import unittest
@@ -8,7 +11,7 @@ import os
 CORRECT_CSV = """
 date,level,msg
 2021-07-06 12:20:15.056783,INFO,this is a info no. 0
-2021-07-06 12:20:15.057006,INFO,this is a info no. 1
+2021-07-06 12:20:15.057006,DEBUG,this is a info no. 1
 """
 
 # bad csv file
@@ -69,15 +72,16 @@ class TestCSVHandler(unittest.TestCase):
         with mock.patch("builtins.open", m):
             base_form = handler.get_base_form()
             m.assert_called_once_with(CSV_FILENAME, "r")
+            print(f"{base_form=}")
             correct_form = [
                 LogEntry(
                     date=datetime(2021, 7, 6, 12, 20, 15, 56783),
-                    level="2021-07-06 12:20:15.056783",
+                    level="INFO",
                     msg="this is a info no. 0",
                 ),
                 LogEntry(
                     date=datetime(2021, 7, 6, 12, 20, 15, 57006),
-                    level="2021-07-06 12:20:15.057006",
+                    level="DEBUG",
                     msg="this is a info no. 1",
                 ),
             ]
@@ -89,10 +93,7 @@ class TestCSVHandler(unittest.TestCase):
         handler = CSVHandler(CSV_FILENAME)
 
         with mock.patch("builtins.open", m):
-            self.assertRaises(
-                InvalidCSVFileException,
-                handler.get_base_form
-            )
+            self.assertRaises(InvalidCSVFileException, handler.get_base_form)
 
             m.assert_called_once_with(CSV_FILENAME, "r")
 
@@ -102,10 +103,7 @@ class TestCSVHandler(unittest.TestCase):
         handler = CSVHandler(CSV_FILENAME)
 
         with mock.patch("builtins.open", m):
-            self.assertRaises(
-                InvalidCSVHeaderException,
-                handler.get_base_form
-            )
+            self.assertRaises(InvalidCSVHeaderException, handler.get_base_form)
 
             m.assert_called_once_with(CSV_FILENAME, "r")
 
@@ -115,9 +113,6 @@ class TestCSVHandler(unittest.TestCase):
         handler = CSVHandler(CSV_FILENAME)
 
         with mock.patch("builtins.open", m):
-            self.assertRaises(
-                ValueError,
-                handler.get_base_form
-            )
+            self.assertRaises(ValueError, handler.get_base_form)
 
             m.assert_called_once_with(CSV_FILENAME, "r")
