@@ -1,0 +1,6 @@
+
+CREATE TABLE LOG_ENTRIES(
+    date DATETIME,
+    level VARCHAR(16) NOT NULL,
+    msg TEXT NOT NULL
+);
