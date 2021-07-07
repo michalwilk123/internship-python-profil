@@ -22,3 +22,12 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+---
+
+## Przykładowe użycie biblioteki
+Wyjście pliku *example_usage.py*.
+
+Więcej przykładów użycia biblioteki można znaleźć w folderze *tests*.
+
+![przykład](examples/example.png)
