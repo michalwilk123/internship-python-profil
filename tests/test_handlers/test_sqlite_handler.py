@@ -19,6 +19,7 @@ class TestSQLLiteHandler(unittest.TestCase):
         return super().tearDown()
 
     def test_handler_basic_usage(self):
+
         plogger = ProfilLogger([SQLLiteHandler(SQL_FILENAME)])
 
         plogger.info("this is json test file")

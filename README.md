@@ -11,7 +11,7 @@ Dokumentacja zgodna z narzędziem [sphinx]().
 
 Aby być pewnym co do braku dependecji projektu, sugeruję 
 stworzenie środowiska wirtualnego [virtualenv]() z dependecjami z pliku
-requirements.txt.
+requirements.txt (plik ten jest pusty).
 
 Dla systemu unix (macOS, linux) należy wywołać poniższe 
 komendy w powłoce shell **bash**.
