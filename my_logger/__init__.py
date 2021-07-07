@@ -6,7 +6,7 @@ __all__ = [
     "LogEntry",
     "ProfilLogger",
     "ProfilLoggerReader",
-    "ProfilLoggerReaderException"
+    "ProfilLoggerReaderException",
 ]
 
 # Handlers
@@ -19,4 +19,7 @@ from .handlers.file_handler import FileHandler
 # other
 from .log_entry import LogEntry
 from .profil_logger import ProfilLogger
-from .profil_logger_reader import ProfilLoggerReader, ProfilLoggerReaderException
+from .profil_logger_reader import (
+    ProfilLoggerReader,
+    ProfilLoggerReaderException,
+)

@@ -9,6 +9,7 @@ import itertools
 class ProfilLoggerReaderException(Exception):
     ...
 
+
 class ProfilLoggerReader:
     """Access logs entries from files."""
 
