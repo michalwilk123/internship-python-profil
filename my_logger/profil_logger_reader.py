@@ -6,6 +6,9 @@ import re
 import itertools
 
 
+class ProfilLoggerReaderException(Exception):
+    ...
+
 class ProfilLoggerReader:
     """Access logs entries from files."""
 
@@ -22,18 +25,22 @@ class ProfilLoggerReader:
         If dates are None, this date bound is skipped
 
         :param log_entries: Iterable of log objects, could be list, map
-        or anything you can iterate
+            or anything you can iterate
         :type log_entries: Iterable[LogEntry]
         :param start_date: [description], logs older than this
-        date will be skipped, defaults to None
+            date will be skipped, defaults to None
         :type start_date: datetime, optional
         :param end_date: [description],  logs newer than this
-        date will be skipped, defaults to None
+            date will be skipped, defaults to None
         :type end_date: datetime, optional
         :return: list or filter object with given constraints.
-        Threfore O(n) = 1
+            Threfore O(n) = 1
         :rtype: Iterable[LogEntry]
         """
+        if start_date is not None and end_date is not None:
+            if start_date >= end_date:
+                raise ProfilLoggerReaderException
+
         if start_date is not None:
             log_entries = filter(lambda le: le.date >= start_date, log_entries)
 
@@ -59,7 +66,7 @@ class ProfilLoggerReader:
         :param end_date: upper bound date, defaults to None
         :type end_date: Optional[datetime], optional
         :return: list of filtered logs. If no logs found,
-        method returns empty list
+            method returns empty list
         :rtype: List[LogEntry]
         """
 
@@ -85,7 +92,7 @@ class ProfilLoggerReader:
         :param end_date: upper bound date, defaults to None
         :type end_date: Optional[datetime], optional
         :return: list of filtered logs. If no logs found,
-        method returns empty list
+            method returns empty list
         :rtype: List[LogEntry]
         """
         log_entry_list = self.__handler.get_base_form()
@@ -114,7 +121,7 @@ class ProfilLoggerReader:
         :param end_date: upper bound date, defaults to None
         :type end_date: Optional[datetime], optional
         :return: dictionary of grouped log entries. Returns
-        empty set if dictionary is not containing any entries
+            empty set if dictionary is not containing any entries
         :rtype: List[LogEntry]
         """
         log_entry_list = self.__handler.get_base_form()
@@ -147,7 +154,7 @@ class ProfilLoggerReader:
         :param end_date: upper bound date, defaults to None
         :type end_date: Optional[datetime], optional
         :return: dictionary of grouped log entries. Returns
-        empty set if dictionary is not containing any entries
+            empty set if dictionary is not containing any entries
         :rtype: List[LogEntry]
         """
         log_entry_list = self.__handler.get_base_form()

@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, date
-from my_logger import LogEntry, ProfilLoggerReader, CSVHandler
+from my_logger import LogEntry, ProfilLoggerReader, CSVHandler, ProfilLoggerReaderException
 import unittest.mock as mock
 
 base_form_0 = [
@@ -54,6 +54,22 @@ class TestProfilLoggerReader(unittest.TestCase):
             )
         )
         self.assertEqual(entries, base_form_0[1:3])
+
+    def test_invalid_date_input(self):
+        start_date = datetime.combine(date(2021, 4, 1), datetime.min.time())
+        end_date = datetime.combine(date(2021, 5, 20), datetime.min.time())
+        self.assertRaises(
+            ProfilLoggerReaderException,
+            ProfilLoggerReader.filter_by_datetime,
+            base_form_0, end_date, end_date
+        )
+
+        self.assertRaises(
+            ProfilLoggerReaderException,
+            ProfilLoggerReader.filter_by_datetime,
+            base_form_0, end_date, start_date
+        )
+        
 
     def test_find_by_text(self):
         handler = CSVHandler(HANDLER_FILENAME)
