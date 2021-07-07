@@ -6,6 +6,7 @@ from my_logger import (
     ProfilLogger,
     ProfilLoggerReader,
 )
+from pprint import pprint as pp
 
 json_handler = JsonHandler("logs.json")
 csv_handler = CSVHandler("logs.csv")
@@ -21,12 +22,22 @@ logger.warning("Some warning message")
 logger.debug("Some debug message")
 logger.critical("Some critical message")
 logger.error("Some error message")
-# The logs are stores in logs.json, logs.csv, logs.sqlite and logs.txt
 
-# -----
 # Logs are being read form the logs.json file
 log_reader = ProfilLoggerReader(handler=json_handler)
-log_reader.find_by_text(
+matches_text = log_reader.find_by_text(
     "info message"
-)  # returns list of LogEntry that contains message: "Some info message"
-log_reader.find_by_regex(f"[a-g]{1} message")
+)  
+# returns list of LogEntry that contains message: "Some info message"
+# orginal regex will not match anything!
+matches_regex = log_reader.find_by_regex(".*[a-g]{1} message")
+
+groups_level = log_reader.groupby_level()
+
+print("\n|======== FILTER BY TEXT ==========|")
+print(f"{matches_text=}")
+print("\n|======== FILTER BY REGEX =========|")
+print(f"{matches_regex=}")
+print("\n|======== GROUPING BY LEVEL =======|")
+for g in groups_level:
+    print(f"{g} : {groups_level[g]}")
