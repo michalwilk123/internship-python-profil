@@ -6,7 +6,6 @@ from my_logger import (
     ProfilLogger,
     ProfilLoggerReader,
 )
-from pprint import pprint as pp
 
 json_handler = JsonHandler("logs.json")
 csv_handler = CSVHandler("logs.csv")
@@ -25,9 +24,7 @@ logger.error("Some error message")
 
 # Logs are being read form the logs.json file
 log_reader = ProfilLoggerReader(handler=json_handler)
-matches_text = log_reader.find_by_text(
-    "info message"
-)  
+matches_text = log_reader.find_by_text("info message")
 # returns list of LogEntry that contains message: "Some info message"
 # orginal regex will not match anything!
 matches_regex = log_reader.find_by_regex(".*[a-g]{1} message")

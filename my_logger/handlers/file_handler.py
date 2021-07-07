@@ -15,7 +15,8 @@ class FileHandler(Handler):
     def __init__(self, filename: str) -> None:
         self.__filename = filename
         self.__re_expr = re.compile(
-            "LogEntry\\(date=datetime.datetime\\([0-9]{4},[ 0-9,]*\\), level=.*msg=.*\\)"
+            "LogEntry\\(date=datetime.datetime\\([0-9]{4},"
+            "[ 0-9,]*\\), level=.*msg=.*\\)"
         )
 
     def add_log(self, log: LogEntry) -> None:
@@ -49,6 +50,11 @@ class FileHandler(Handler):
         log_entries = []
 
         with open(self.__filename, "r") as text_file:
+            """
+            I know that this all this work could be ignored
+            by using eval command, but I am not comfortable
+            using it on arbitrary textfile. Kinda bad practice.
+            """
             for line in text_file.readlines():
                 if not self.__re_expr.match(line):
                     raise BadHandlerFileFormatException(

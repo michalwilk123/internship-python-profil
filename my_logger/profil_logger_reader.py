@@ -7,8 +7,8 @@ import itertools
 
 
 class ProfilLoggerReader:
-    """Access logs entries from files.
-    """
+    """Access logs entries from files."""
+
     def __init__(self, handler: Handler) -> None:
         self.__handler = handler
 
@@ -48,7 +48,7 @@ class ProfilLoggerReader:
         start_date: Optional[datetime] = None,
         end_date: Optional[datetime] = None,
     ) -> List[LogEntry]:
-        """find log entries caontaining given 
+        """find log entries caontaining given
         chunk of text sequence in the message attribute.
         You can also filter logs by their date attribute.
 
@@ -106,9 +106,9 @@ class ProfilLoggerReader:
         like: INFO, WARNING, DEBUG, etc.
         and values (list of logs from the same level).
         If they are no logs with some level, the level key is not
-        created. You can filter those logs also by their 
+        created. You can filter those logs also by their
         date attribute.
-        
+
         :param start_date: lower bound date, defaults to None
         :type start_date: Optional[datetime], optional
         :param end_date: upper bound date, defaults to None
@@ -139,9 +139,9 @@ class ProfilLoggerReader:
         like: July, May, April, etc.
         and values (list of logs from the same month).
         If they are no logs from given month, the month key is not
-        created. You can filter those logs also by their 
+        created. You can filter those logs also by their
         date attribute.
-        
+
         :param start_date: lower bound date, defaults to None
         :type start_date: Optional[datetime], optional
         :param end_date: upper bound date, defaults to None

@@ -6,12 +6,6 @@ import os
 from datetime import datetime
 
 
-# CORRECT_TEXT = """
-# LogEntry(date=datetime.datetime(2021, 7, 7, 15, 41, 4, 64954), level='INFO', msg='this is text info')
-# LogEntry(date=datetime.datetime(2021, 7, 7, 15, 41, 4, 65011), level='WARNING', msg='this is text warning')
-# LogEntry(date=datetime.datetime(2021, 7, 7, 15, 41, 4, 65045), level='ERROR', msg='this is text error')
-# """
-
 CORRECT_TEXT = (
     "LogEntry(date=datetime.datetime(2021, 7, 7, 15, 41, 4, 64954), "
     "level='INFO', msg='this is text info')\n"

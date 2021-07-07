@@ -8,6 +8,7 @@ class ProfilLogger:
     """Logger object. From this class you can perform
     all nessesary logging operations.
     """
+
     def __init__(self, handlers: List[Handler]) -> None:
         """Initialize object with a list of handlers.
         Logs will be stored in each handler object
