@@ -1,7 +1,6 @@
-from my_logger.handlers.csv_handler import CSVHandler
 import unittest
 from datetime import datetime, date
-from my_logger import LogEntry, ProfilLoggerReader, profil_logger_reader
+from my_logger import LogEntry, ProfilLoggerReader, CSVHandler
 import unittest.mock as mock
 
 base_form_0 = [
